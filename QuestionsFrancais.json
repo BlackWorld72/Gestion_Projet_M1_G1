@@ -1,0 +1,66 @@
+{
+    "easy": [
+        {
+            "file": "",
+            "questions": [
+                {
+                    "id": 1,
+                    "cours": "Orthogrape : En français, l'adjectif s'accorde toujours avec le nom qu'il qualifie ou qu'il détermine.",
+                    "question": "Corrigez cette phrase : la femme devant nous est grand, elle est élégante avec sa robe bleu.",
+                    "answer": ["grande", "bleue"]
+                },
+                {
+                    "id": 2,
+                    "cours": "Orthogrape : En français, les verbes s'accordent avec leur sujet.",
+                    "question": "Corrigez cette phrase : deux frères joue dans un parc, leur grand-mère sourit en les voyant.",
+                    "answer": ["jouent"]
+                },
+                {
+                    "id": 3,
+                    "cours": "Conjugaison : En français, un verbe se conjuge en fonction de pronoms personnels. Il en exite 6 categories. La première personne du singulier, la deuxième personne du singulier et la troisième personne du singulier puis les mêmes aux pluriels. Ils existent une petite exception pour la troisième personne du singulier et pluriel. En effet, il y a un pronom feminin, masculin et neutre au singulier et masculin et féminin au pluriel.",
+                    "question": "Dans les propositions suivantes, quelles sont les pronoms personnels corrects ?",
+                    "options":["je tue il/elle nous vous ils/elles", " je tu il/elle nous vous ils/elles", "je tu il/elle/on nous vous ils/elles", "je tu il/elle/on nous vous ils/elles sont"],
+                    "answer": ["je tu il/elle/on nous vous ils/elles"]
+                }
+            ]
+        }
+    ],
+    "normal": [
+        {
+            "file": "",
+            "questions": [
+                {
+                    "id": 1,
+                    "cours": "Conjugaison : Le participe passé employé sans auxiliaire s'accorde comme un adjectif.",
+                    "question": "Conjuguez le verbe au participe passé dans la phrase suivante : Une lettre bien (présenter).",
+                    "answer": ["Une lettre bien présentée"]
+                },
+                {
+                    "id": 2,
+                    "cours": "Conjugaison : Le participe passé ne s'accorde que s'il est placé après le nom.",
+                    "question": "Conjuguez les verbes suivant au participe passé dans la phrase suivante : Ci-joint, les documents que vous avez (réclamer). Qu'est-ce qui est (réclamer) ? Les documents.",
+                    "answer": ["réclamés","réclamé"]
+                },
+                {
+                    "id": 3,
+                    "cours":"Conjugaison : Le participe passé conjugué avec l'auxiliaire avoir s'accorde avec l'objet direct si celui-ci est placé avant.",
+                    "question": "Conjuguez les phrases suivantes : Les acomptes qu'il a (verser). J'ai (dactylographier) tous les rapports.",
+                    "answer": ["versés, dactylographié"]
+                }
+            ]
+        }
+    ],
+    "hard": [
+        {
+            "file": "",
+            "questions": [
+                {
+                    "id": 1,
+                    "question": "",
+                    "answer": ""
+                }
+            ]
+        }
+    ]
+ }
+ 
