@@ -17,6 +17,12 @@ function getDomaine(json) {
     else if (json == image) {
         return "Image"
     }
+    else if (json == ortho) {
+        return "Orthographe"
+    }
+    else if (json == verbe) {
+        return "Conjugaison"
+    }
     else {
         return ""
     }
@@ -289,7 +295,9 @@ function oneQuestion(json, hasText, difficulty, id) {
             inp.setAttribute("type", "text");
             inp.setAttribute("id", "inp" + questionID);
             inp.setAttribute("class", "inpanswer");
-            inp.setAttribute("onkeypress", "validateInputMath(event)");
+            if (json == data) {
+                inp.setAttribute("onkeypress", "validateInputMath(event)");
+            }
         }
     
     

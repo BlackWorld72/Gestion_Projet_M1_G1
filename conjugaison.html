@@ -13,7 +13,7 @@
   <script type="text/javascript" src="verbe.js"></script>
 </head>
 <body>
-    <ul class="menu">
+    <ul>
         <li><a href="index.html">Acceuil</a></li>
         <li><a href="orthographe.html">Orthographe</a></li>
         <li><a href="conjugaison.html">Conjugaison</a></li>
@@ -24,12 +24,24 @@
         <li><a href="enigme.html">Enigme</a></li>
         <li><a href="score.html">Score</a></li>
         <li><a href="plusloin.html">Pour aller plus loin</a></li>
-    </ul> 
-
+    </ul>
+    
     <br>
 
-    <div id="recapScore"></div>
-    <script>renderScore()</script>
+    <div class="diff">
+      <input type="button" class="btnDiff" value= "Niveau Facile" onclick="oneQuestion(verbe,false,0,0)">
+      <input type="button" class="btnDiff" value= "Niveau Moyen" onclick="oneQuestion(verbe,false,1,0)">
+      <input type="button" class="btnDiff" value= "Niveau Difficile" onclick="oneQuestion(verbe,false,2,0)">
+    </div>
+
+    <div class="questions" id="qs"></div>
+
+    <div id="validation">
+      <input type="button" style="visibility: hidden; display: none;" value= "Valider" id="btnValid" onclick="oneAswer(verbe,false)"></input>
+      <input type="button" style="visibility: hidden; display: none;" value= "Suivant" id="btnSuivant" onclick="oneQuestion(verbe, false, 0, -1)"></input>
+      <div id="score"></div>
+    </div>
+
 
 </body>
 </html>
