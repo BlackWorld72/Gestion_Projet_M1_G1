@@ -64,6 +64,22 @@ body {
     border-color: rgb(153, 151, 151);
 }
 
+#btnSuivant {
+    background-color: #333;
+    border: none;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding: 15px 102px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: solid;  
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgb(153, 151, 151);
+}
+
 ul {
     list-style-type: none;
     margin: 0;

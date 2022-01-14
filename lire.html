@@ -10,10 +10,11 @@
 <body>
     <ul>
         <li><a href="index.html">Acceuil</a></li>
-        <li><a href="ecrire.html">Ecrire</a></li>
         <li><a href="lire.html">Lire</a></li>
         <li><a href="calcul.html">Calcul</a></li>
         <li><a href="positionnement.html">Positionnement</a></li>
+        <li><a href="image.html">Image</a></li>
+        <li><a href="enigme.html">Enigme</a></li>
     </ul>
     
     <br>
@@ -21,15 +22,16 @@
     <div id="cours"></div>
     <script>cours(text)</script>
     <div class="diff">
-      <input type="button" class="btnDiff" value= "Niveau Facile" onclick="question(text,true,0)">
-      <input type="button" class="btnDiff" value= "Niveau Moyen" onclick="question(text,true,1)">
-      <input type="button" class="btnDiff" value= "Niveau Difficile" onclick="question(text,true,2)">
+      <input type="button" class="btnDiff" value= "Niveau Facile" onclick="oneQuestion(text,true,0,0)">
+      <input type="button" class="btnDiff" value= "Niveau Moyen" onclick="oneQuestion(text,true,1,0)">
+      <input type="button" class="btnDiff" value= "Niveau Difficile" onclick="oneQuestion(text,true,2,0)">
     </div>
 
     <div class="questions" id="qs"></div>
 
     <div id="validation">
-      <input type="button" style="visibility: hidden;" value= "Valider" id="btnValid" onclick="answer(text,false)"></input>
+      <input type="button" style="visibility: hidden; display: none;" value= "Valider" id="btnValid" onclick="oneAswer(text,false)"></input>
+      <input type="button" style="visibility: hidden; display: none;" value= "Suivant" id="btnSuivant" onclick="oneQuestion(text, true, 0, -1)"></input>
       <div id="score"></div>
     </div>
 

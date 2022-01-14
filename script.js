@@ -1,6 +1,8 @@
 b = document.body
 dateExpiration = new Date(2022,4,15)
 diff = 0
+questionID = 0
+score = 0
 
 function cours(json) {
     let div = document.getElementById('cours')
@@ -135,67 +137,73 @@ function repPositionnement() {
     div.append(h3b)
 }
 
-function oneQuestion(json, hasText, difficulty, id) {
+function oneAswer(json, isNum) {
     qs = document.getElementById("qs")
-    diff = difficulty
-    var base = ""
-
-    switch(difficulty) {
-        case 0:
-            base = json.easy[0]
-            break
-        case 1:
-            base = json.normal[0]
-            break
-        case 2:
-            base = json.hard[0]
-            break
-        default:
-            return
+    if (isNum && verify()) {
+        return
     }
 
-    if (id == 0) {
-        updateText()
-        d = document.getElementById("scoreValue")
-        if (d) {
-            d.remove()
-        }
-
-        if (hasText) {
-            let div = document.createElement('div')
-            let p = document.createElement('p')
-            p.setAttribute("id", "txt");
-            p.textContent = base.file
-            qs.append(div)
-            div.append(p)
-        }
-    }
-
-    questions = base.questions[id]
-
-    
-}
-
-
-/**
- * Permet d'afficher les quesiton sur la page
- * @param {*} json 
- * @param {*} select 
- * @param {*} hasText 
- * @param {*} difficulty 
- */
-function question(json, hasText, difficulty) {
-    qs = document.getElementById("qs")
-    diff = difficulty
-    var base = ""
-    update("qs")
-    updateText()
-    d = document.getElementById("scoreValue")
+    d = document.getElementById("ans" + questionID)
     if (d) {
         d.remove()
     }
 
-    switch(difficulty) {
+    base = ""
+    switch(diff) {
+        case 0:
+            base = json.easy[0].questions[questionID]
+            break
+        case 1:
+            base = json.normal[0].questions[questionID]
+            break
+        case 2:
+            base = json.hard[0].questions[questionID]
+            break
+        default:
+            return
+    }
+    let div = document.getElementById("qs" + questionID)
+    let newH2 = document.createElement('h4')
+    newH2.textContent = base.answer
+    newH2.setAttribute("id", "ans" + questionID);
+    newH2.setAttribute("class", "answer");
+
+    if (document.getElementById("inp" + questionID).value == base.answer) {
+        newH2.setAttribute("style", "color: green;");
+        score += 1
+    }
+    else {
+        newH2.setAttribute("style", "color: red;");
+    }
+
+    div.append(newH2)
+    document.getElementById("btnValid").setAttribute("style", "visibility: hidden; display: none;")
+    document.getElementById("btnSuivant").setAttribute("style", "visibility: show;")
+}
+
+function oneQuestion(json, hasText, difficulty, id) {
+    qs = document.getElementById("qs")
+    
+    var base = ""
+
+    if (id == 0) {
+        diff = difficulty
+    }
+
+    d = document.getElementById("qs" + questionID)
+    if (d) {
+        d.remove()
+    }
+
+    if (id == 0) {
+        score = 0;
+        questionID = 0
+    }
+    else {
+        questionID += 1
+    }
+
+    switch(diff) {
         case 0:
             base = json.easy[0]
             break
@@ -209,104 +217,85 @@ function question(json, hasText, difficulty) {
             return
     }
 
+    if (base.questions[questionID]) {
+        if (questionID == 0) {
+            updateText()
+            d = document.getElementById("scoreValue")
+            if (d) {
+                d.remove()
+            }
     
-    if (hasText) {
-        let div = document.createElement('div')
-        let p = document.createElement('p')
-        p.setAttribute("id", "txt");
-        p.textContent = base.file
-        qs.append(div)
-        div.append(p)
-    }
+            if (hasText) {
+                let div = document.createElement('div')
+                let p
 
-    questions = base.questions
+                if (base.file.endsWith('.jpg')) {
+                    p = document.createElement('img')
+                    p.setAttribute("id", "txt");
+                    p.setAttribute("src", base.file);
+                }
+                else {
+                    p = document.createElement('p')
+                    p.setAttribute("id", "txt");
+                    p.textContent = base.file
+                }
 
-    for (var i = 1 ; i < 6 ; i++) {
+                qs.append(div)
+                div.append(p)
+            }
+        }
+    
+        ques = base.questions[questionID]
+    
         let div = document.createElement('div')
         let newH2 = document.createElement('h2')
         let inp
     
-        newH2.textContent = questions[i-1].question
+        newH2.textContent = ques.question
     
-        if ((questions[i-1].options != null)) {
+        if ((ques.options != null)) {
             inp = document.createElement('select')
-            inp.setAttribute("name", "qs" + i);
-            inp.setAttribute("id", "inp" + i);
+            inp.setAttribute("name", "qs" + questionID);
+            inp.setAttribute("id", "inp" + questionID);
             inp.setAttribute("class", "inpanswer");
     
-            for (let j = 0 ; j < 4 ; j++) {
+            for (let j = 0 ; j < ques.options.length ; j++) {
                 let opt = document.createElement('option')
-                opt.textContent = questions[i-1].options[j]
-                opt.setAttribute("value", questions[i-1].options[j]);
+                opt.textContent = ques.options[j]
+                opt.setAttribute("value", ques.options[j]);
                 inp.append(opt)
             }
         }
         else {
             inp = document.createElement('input')
             inp.setAttribute("type", "text");
-            inp.setAttribute("id", "inp" + i);
+            inp.setAttribute("id", "inp" + questionID);
             inp.setAttribute("class", "inpanswer");
             inp.setAttribute("onkeypress", "validateInputMath(event)");
         }
-
     
-        newH2.setAttribute("id", i);
+    
+        newH2.setAttribute("id", questionID);
         newH2.setAttribute("class", "question");
     
-        div.setAttribute("id", "qs" + i);
+        div.setAttribute("id", "qs" + questionID);
         div.setAttribute("class", "divquestion");
     
         qs.append(div)
         div.append(newH2)
         div.append(inp)
+    
+        document.getElementById("btnSuivant").setAttribute("style", "visibility: hidden; display: none;")
+        document.getElementById("btnValid").setAttribute("style", "visibility: show;")
     }
-    document.getElementById("btnValid").setAttribute("style", "visibility: show;")
-}   
+    else {
+        updateText()
+        
+        document.getElementById("btnSuivant").setAttribute("style", "visibility: hidden; display: none;")
+        document.getElementById("btnValid").setAttribute("style", "visibility: hidden; display: none;")
 
-/**
- * Permet de répondre à une question
- * @param {*} json 
- * @param {*} isNum 
- * @returns 
- */
-function answer(json, isNum) {
-    qs = document.getElementById("qs")
-    if (isNum && verify()) {
-        return
-    }
-    update("ans")
-    score = 0
-    switch(diff) {
-        case 0:
-            questions = json.easy[0].questions
-            break
-        case 1:
-            base = json.normal[0].questions
-            break
-        case 2:
-            base = json.hard[0].questions
-            break
-        default:
-            return
-    }
-    for (var i = 1 ; i < 6 ; i++) {
-        let div = document.getElementById("qs" + i)
-        let newH2 = document.createElement('h4')
-        newH2.textContent = questions[i-1].answer
-        newH2.setAttribute("id", "ans" + i);
-        newH2.setAttribute("class", "answer");
-
-        if (document.getElementById("inp" + i).value == questions[i-1].answer) {
-            newH2.setAttribute("style", "color: green;");
-            score += 1
-        }
-        else {
-            newH2.setAttribute("style", "color: red;");
-        }
-
-        div.append(newH2)
-    }
-    setScore(score)
+        setScore()
+    } 
 }
 
 
@@ -314,7 +303,7 @@ function answer(json, isNum) {
  * Permet d'ajouter un cookie
  * @param {*} score 
  */
-function addCookie(score) {
+function addCookie() {
     len = document.cookie.length
     today = new Date()
     document.cookie = "score" + len + "=" + today.getDate() + today.getMonth() + today.getFullYear() + today.getHours() + today.getMinutes() + score + ";expires="+dateExpiration.toUTCString();
@@ -342,12 +331,10 @@ function update(pref) {
  * @returns 
  */
 function verify() {
-    for (let i = 1 ; i < 6 ; i++) {
-        rep = document.getElementById("inp" + i).value
-        if (rep == "") {
-            alert ("Vous avez oublié de répondre à certaines questions");
-            return true
-        }
+    if (document.getElementById("inp" + questionID).value == "") {
+        alert ("Vous avez oublié de répondre à certaines questions");
+        return true
+        
     }
     return false
 }
@@ -356,7 +343,7 @@ function verify() {
  * Permet d'afficher le score
  * @param {} score 
  */
-function setScore(score) {
+function setScore() {
 
     d = document.getElementById("scoreValue")
     if (d) {
@@ -366,10 +353,23 @@ function setScore(score) {
     div = document.getElementById("score")
     let h3 = document.createElement('h3')
     h3.setAttribute("id", "scoreValue")
-    h3.textContent = (score/5 * 100) + " %  de bonne réponses"
+    h3.textContent = "Votre pourcentage de bonne réponses est de " + (score/questionID * 100) + " % au niveau " + getNiveau()
     div.append(h3)
-    addCookie(score)
+    addCookie()
     console.log(document.cookie)
+}
+
+function getNiveau() {
+    switch (diff) {
+        case 0:
+            return "facile"
+        case 1:
+            return "moyen"
+        case 2:
+            return "difficile"
+        default:
+            return ""
+    }
 }
 
 /**
