@@ -23,25 +23,8 @@
 
     <br>
 
-    <div id="cours"></div>
-    <script>cours(data)</script>
-
-    <div class="diff">
-      <input type="button" class="btnDiff" value= "Niveau Facile" onclick="oneQuestion(data, false, 0, 0)">
-      <input type="button" class="btnDiff" value= "Niveau Moyen" onclick="oneQuestion(data, false, 1, 0)">
-      <input type="button" class="btnDiff" value= "Niveau Difficile" onclick="oneQuestion(data, false, 2, 0)">
-    </div>
-
-    <div class="questions" id="qs"></div>
-
-    <div id="validation">
-      <input type="button" style="visibility: hidden; display: none;" value= "Valider" id="btnValid" onclick="oneAswer(data,true)"></input>
-      <input type="button" style="visibility: hidden; display: none;" value= "Suivant" id="btnSuivant" onclick="oneQuestion(data, false, 0, -1)"></input>
-      <div id="score"></div>
-    </div>
-
-    
-
+    <div id="recapScore"></div>
+    <script>renderScore()</script>
 
 </body>
 </html>

@@ -1,14 +1,13 @@
-enigme =
-{
-    "easy": [
+enigme = {
+"easy": [
         {
             "file": "",
             "questions": [
                 {
                     "id": 1,
-                    "question": "Un escargot est au fond d’un puits de 10 mètres. Le jour, il monte de 3 mètres et la nuit il redescend de 2 mètres. Au bout de combien de jours arrivera-t-il hors du puis ?",
-                    "options": ["6", "7", "8", "9"],
-                    "answer": "8"
+                    "question": "Un escargot est au fond d’un puits de 10 mètres. Il monte 2 mètres par jours. Au bout de combien de jour a-t-il atteint le sommet ?",
+                    "options": ["5", "6", "7", "8"],
+                    "answer": "5"
                 },
                 {
                     "id": 2,
@@ -44,19 +43,19 @@ enigme =
             "questions": [
                 {
                     "id": 1,
-                    "question": "313 lutins font la course. Baptiste s’aperçoit qu’il a deux fois plus de lutins devant lui que derrière lui. Quelle est la position de Baptiste dans la course ?",
-                    "options": ["157", "209", "240", "626"],
-                    "answer": "209"
+                    "question": "313 lutins font la course. Baptiste s’aperçoit qu’il a 150 lutins devant lui. Combien de lutin a-t-il derrière lui ?",
+                    "options": ["152", "162", "173", "183"],
+                    "answer": "162"
                 },
                 {
                     "id": 2,
-                    "question": "Matthieu entre dans un club exclusivement réservé aux hommes. 600 hommes sont membres de ce club. Parmi ceux-là 5% portent une boucle d’oreille. Des 95% qui restent, la moitié portent 2 boucles d’oreilles et les autres aucune.Combien porte-t-on de boucles d’oreille dans ce club ?",
-                    "options": ["30", "300", "570", "600"],
-                    "answer": "600"
+                    "question": "Quelle est la suite logique 5 11 7 13 9 15 11 ?",
+                    "options": ["13", "15", "17", "19"],
+                    "answer": "17"
                 },
                 {
                     "id": 3,
-                    "question": "J’ai 4 fois l’âge de mon fils.Dans 20 ans, j’aurai 2 fois son âge.Quel âge avons-nous ?",
+                    "question": "J’ai 4 fois l’âge de mon fils. Dans 20 ans, j’aurai 2 fois son âge. Quel âge avons-nous ?",
                     "options": ["J'ai 30 ans et mon fils 15 ans", "J'ai 40 ans et mon fils 10 ans", "J'ai 60 ans et mon fils 30 ans"],
                     "answer": "J’ai 40 ans et mon fils 10 ans"
                 },
@@ -83,7 +82,7 @@ enigme =
                 {
                     "id": 1,
                     "question": "Le père Noël part pour sa tournée avec 6 rennes. Chaque renne transporte 3 lutins sur son dos et 2 lucioles sur ses cornes. Chaque lutin porte 3 sacs qui contiennent chacun 10 cadeaux.Combien d’êtres vivants partent pour la tournée de cadeaux ?",
-                    "options": ["28", "30", "37", "42"],
+                    "options": ["14", "28", "37", "42"],
                     "answer": "37"
                 },
                 {
@@ -101,12 +100,12 @@ enigme =
                 {
                     "id": 4,
                     "question": "Je viens d’écrire sur une feuille tous les nombres de 100 à 400. Combien de fois ai-je écrit le chiffre 2 ?",
-                    "options": ["100", "160", "300", "500"],
+                    "options": ["100", "160", "360", "500"],
                     "answer": "160"
                 },
                 {
                     "id": 5,
-                    "question": "Voici une suite logique de nombres : 7 ; 21 ; 18 ; 72 ; 68… Quel est le nombre suivant ?",
+                    "question": "Voici une suite logique de nombres : 7  21  18  72  68… Quel est le nombre suivant ?",
                     "options": ["90", "140", "220", "340"],
                     "answer": "340"
                 }

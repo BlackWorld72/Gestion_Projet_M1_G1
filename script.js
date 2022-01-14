@@ -4,6 +4,24 @@ diff = 0
 questionID = 0
 score = 0
 
+function getDomaine(json) {
+    if (json == data) {
+        return "Calcul"
+    }
+    else if (json == enigme) {
+        return "Enigme"
+    }
+    else if (json == text) {
+        return "Lecture"
+    }
+    else if (json == image) {
+        return "Image"
+    }
+    else {
+        return ""
+    }
+}
+
 function cours(json) {
     let div = document.getElementById('cours')
     for (let i = 0 ; i < json.cours.length ; i++) {
@@ -294,19 +312,91 @@ function oneQuestion(json, hasText, difficulty, id) {
         document.getElementById("btnSuivant").setAttribute("style", "visibility: hidden; display: none;")
         document.getElementById("btnValid").setAttribute("style", "visibility: hidden; display: none;")
 
-        setScore()
+        setScore(json)
     } 
 }
 
+function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+  }
 
 /**
  * Permet d'ajouter un cookie
  * @param {*} score 
  */
-function addCookie() {
-    len = document.cookie.length
+function addCookie(json) {
+    len = document.cookie.split(';').length
     today = new Date()
-    document.cookie = "score" + len + "=" + today.getDate() + today.getMonth() + today.getFullYear() + today.getHours() + today.getMinutes() + score + ";expires="+dateExpiration.toUTCString();
+    document.cookie = "score" + uuidv4() + "=" + today.getDate() + ',' + today.getMonth() + ',' + today.getFullYear() + ',' + today.getHours() + ',' + today.getMinutes() + ',' + score + ',' + questionID + ',' + getNiveau() + ',' + getDomaine(json) +";expires="+dateExpiration.toUTCString();
+    console.log(document.cookie)
+}
+
+function renderScore() {
+    cookies = document.cookie.split(';')
+    div = document.getElementById("recapScore")
+
+    tr = document.createElement("tr")
+    tr.setAttribute("id","header")
+
+    th = document.createElement("th")
+    th.setAttribute("scope","col")
+    th.textContent = "Domaine"
+    tr.append(th)
+
+    th = document.createElement("th")
+    th.setAttribute("scope","col")
+    th.textContent = "Niveau"
+    tr.append(th)
+
+    th = document.createElement("th")
+    th.setAttribute("scope","col")
+    th.textContent = "Score"
+    tr.append(th)
+
+    th = document.createElement("th")
+    th.setAttribute("scope","col")
+    th.textContent = "Date"
+    tr.append(th)
+
+    th = document.createElement("th")
+    th.setAttribute("scope","col")
+    th.textContent = "Heure"
+    tr.append(th)
+
+    div.append(tr)
+
+    for (let i = 0 ; i < cookies.length ; i++) {
+        cook = cookies[i].split('=')[1].split(',')
+
+        tr = document.createElement("tr")
+        tr.setAttribute("id","cookie" + i)
+
+        th = document.createElement("th")
+        th.setAttribute("scope","row")
+        th.textContent = cook[8]
+        tr.append(th)
+
+        td = document.createElement("td")
+        td.textContent = cook[7]
+        tr.append(td)
+
+        td = document.createElement("td")
+        td.textContent = cook[5] + '/' + cook[6]
+        tr.append(td)
+
+        td = document.createElement("td")
+        td.textContent = cook[0] + '/' + cook[1]+1 + '/' + cook[2]
+        tr.append(td)
+
+        td = document.createElement("td")
+        td.textContent = cook[3] + ':' + cook[4]
+        tr.append(td)
+
+        div.append(tr)
+    }
+
 }
 
 /**
@@ -343,7 +433,7 @@ function verify() {
  * Permet d'afficher le score
  * @param {} score 
  */
-function setScore() {
+function setScore(json) {
 
     d = document.getElementById("scoreValue")
     if (d) {
@@ -355,7 +445,7 @@ function setScore() {
     h3.setAttribute("id", "scoreValue")
     h3.textContent = "Votre pourcentage de bonne réponses est de " + (score/questionID * 100) + " % au niveau " + getNiveau()
     div.append(h3)
-    addCookie()
+    addCookie(json)
     console.log(document.cookie)
 }
 

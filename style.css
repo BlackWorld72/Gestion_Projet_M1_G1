@@ -80,6 +80,17 @@ body {
     border-color: rgb(153, 151, 151);
 }
 
+#recapScore {
+    border: solid;
+    border-radius: 12px;
+    border-color: white;
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+    width: 70%;/* ta valeur */
+    margin: auto;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -127,6 +138,10 @@ a{
 
 #position {
     color: white;
+}
+
+.cookies {
+    float:inline-start;
 }
 
 .inpanswer {
