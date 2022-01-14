@@ -163,7 +163,7 @@ function repPositionnement() {
 
 function oneAswer(json, isNum) {
     qs = document.getElementById("qs")
-    if (verify()) {
+    if (isNum && verify()) {
         return
     }
 
@@ -282,14 +282,9 @@ function oneQuestion(json, hasText, difficulty, id) {
             inp.setAttribute("name", "qs" + questionID);
             inp.setAttribute("id", "inp" + questionID);
             inp.setAttribute("class", "inpanswer");
-
-            let opt = document.createElement('option')
-            opt.textContent = "Selectionez une réponse"
-            opt.setAttribute("value", "");
-            inp.append(opt)
     
             for (let j = 0 ; j < ques.options.length ; j++) {
-                opt = document.createElement('option')
+                let opt = document.createElement('option')
                 opt.textContent = ques.options[j]
                 opt.setAttribute("value", ques.options[j]);
                 inp.append(opt)
@@ -456,8 +451,7 @@ function setScore(json) {
     div = document.getElementById("score")
     let h3 = document.createElement('h3')
     h3.setAttribute("id", "scoreValue")
-    s = Number((score/questionID * 100).toFixed(2))
-    h3.textContent = "Votre pourcentage de bonne réponses est de " + s + " % au niveau " + getNiveau()
+    h3.textContent = "Votre pourcentage de bonne réponses est de " + (score/questionID * 100) + " % au niveau " + getNiveau()
     div.append(h3)
     addCookie(json)
     console.log(document.cookie)
