@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Gestion de Projet</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="calcul.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <ul class="menu">
+        <li><a href="index.html">Acceuil</a></li>
+        <li><a href="ecrire.html">Ecrire</a></li>
+        <li><a href="lire.html">Lire</a></li>
+        <li><a href="calcul.html">Calcul</a></li>
+        <li><a href="positionnement.html">Positionnement</a></li>
+    </ul> 
+
+    <br>
+
+    <div id="cours"></div>
+    <script>cours(data)</script>
+
+    <div class="diff">
+      <input type="button" class="btnDiff" value= "Niveau Facile" onclick="question(data, false, 0)">
+      <input type="button" class="btnDiff" value= "Niveau Moyen" onclick="question(data, false, 1)">
+      <input type="button" class="btnDiff" value= "Niveau Difficile" onclick="question(data, false, 2)">
+    </div>
+
+    <div class="questions" id="qs"></div>
+
+    <div id="validation">
+      <input type="button" style="visibility: hidden;" value= "Valider" id="btnValid" onclick="answer(data,true)"></input>
+      <div id="score"></div>
+    </div>
+
+    
+
+
+</body>
+</html>

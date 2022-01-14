@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Gestion de Projet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <ul>
+        <li><a href="index.html">Acceuil</a></li>
+        <li><a href="ecrire.html">Ecrire</a></li>
+        <li><a href="lire.html">Lire</a></li>
+        <li><a href="calcul.html">Calcul</a></li>
+        <li><a href="positionnement.html">Positionnement</a></li>
+    </ul> 
+    
+    <br>
+    <div id="txt">
+      <p>Ici vous allez pouvoir vous évaluez. Suite à ces questions, vous allez pouvoir connaître votre niveau de difficulte recommander.</p>
+    </div>
+
+    <div class="diff">
+      <input type="button" class="btnDiff" value= "Cliquer ici pour commencer" onclick="positionnement()">
+    </div>
+
+    <div class="questions" id="qs"></div>
+    <div id="validation">
+      <input type="button" style="visibility: hidden;" value= "Valider" id="btnValid" onclick="repPositionnement()"></input>
+      <div id="score"></div>
+    </div>
+
+    <script type="text/javascript" src="positionnement.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+</body>
+</html>
